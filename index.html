@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Проект: Место</title>
+  <link href="pages/index.css" rel="stylesheet">
+</head>
+
+<body class="body">
+  <div class="page">
+    <!--Секция header-->
+    <header class="header">
+      <img src="./images/logo.svg" alt="логотип проекта" class="header__logo">
+    </header>
+    <main>
+      <!--Секция profile-->
+      <section class="profile">
+        <img src="./images/image.jpg" class="profile__avatar" alt="Фото профиля">
+        <div class="profile__info">
+          <div class="profile__title">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <button class="profile__edit-button" type="button" aria-label="Редактировать профиль"></button>
+          </div>
+          <h2 class="profile__subtitle">Исследователь океана</h2>
+        </div>
+        <button class="profile__add-button" type="button" aria-label="Добавить фото"></button>
+      </section>
+      <!--Секция elements-->
+      <section class="elements">
+        <ul class="elements__list">
+          <li class="element">
+            <img src="./images/taj-mahal.jpg" class="element__image" alt="Индия, Тадж-Махал">
+            <div class="element__container">
+              <h2 class="element__description">Индия, Тадж-Махал</h2>
+              <button class="element__like" type="button" aria-label="нравится"></button>
+            </div>
+          </li>
+          <li class="element">
+            <img src="./images/prielbrusie.jpg" class="element__image" alt="Приэльбрусье, ущелье Терскол я и корова">
+            <div class="element__container">
+              <h2 class="element__description">Приэльбрусье</h2>
+              <button class="element__like" type="button" aria-label="нравится"></button>
+            </div>
+          </li>
+          <li class="element">
+            <img src="./images/barcelona.jpg" class="element__image" alt="Барселона, парк Гауди">
+            <div class="element__container">
+              <h2 class="element__description">Барселона, парк Гауди</h2>
+              <button class="element__like" type="button" aria-label="нравится"></button>
+            </div>
+          </li>
+          <li class="element">
+            <img src="./images/insbruck.jpg" class="element__image" alt="На вершине горы в Инсбруке">
+            <div class="element__container">
+              <h2 class="element__description">Инсбрук</h2>
+              <button class="element__like" type="button" aria-label="нравится"></button>
+            </div>
+          </li>
+          <li class="element">
+            <img src="./images/island.jpg" class="element__image" alt="Водопады Исландии осенью">
+            <div class="element__container">
+              <h2 class="element__description">Исландия, Barnafossar</h2>
+              <button class="element__like" type="button" aria-label="нравится"></button>
+            </div>
+          </li>
+          <li class="element">
+            <img src="./images/riga.jpg" class="element__image" alt="Уютный центр Риги">
+            <div class="element__container">
+              <h2 class="element__description">Рига</h2>
+              <button class="element__like" type="button" aria-label="нравится"></button>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <!--Секция footer-->
+    <footer class="footer">
+      <p class="footer__copyright" lang="en">
+        &copy; 2023 Mesto Russia
+      </p>
+    </footer>
+    <!--popup-->
+    <div class="popup">
+      <div class="popup__container">      
+        <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form class="popup__form" name="popupForm">
+          <input class="popup__input popup__input_type_name" id="username" type="text" name="username" placeholder="Ваше имя">
+          <input class="popup__input popup__input_type_status" id="userstatus" type="text" name="userstatus" placeholder="О себе">
+          <button class="popup__save" type="submit"  aria-label="Сохранить и закрыть">Сохранить</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script async src="./scripts/index.js"></script>
+</body>
+
+</html>

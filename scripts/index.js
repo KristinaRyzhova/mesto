@@ -104,7 +104,7 @@ const element = document.querySelector('.element');
 const elementsList = document.querySelector('.elements__list');
 const templateElement = document.querySelector('#element-place-cards').content.querySelector('.element');
 
-function createPlaceCards({name, link}) {
+function createPlaceCards(name, link) {
   const placeCard = templateElement.cloneNode(true);
   
   const elementImage = placeCard.querySelector('.element__image');

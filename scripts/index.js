@@ -123,19 +123,16 @@ function createPlaceCards(name, link) {
   elementLike.addEventListener('click', function() {
     elementLike.classList.toggle('element__like_active');
   })
-
   elementDelite.addEventListener('click', function() {
     placeCard.remove();
   })
 
-
   //открытие попапа с большой фотографией
   elementImage.addEventListener('click', function () {
     openPopup(popupFullImages);
-
-    fullImage.src = link;
-    fullImageText.alt = name;
-    fullImageText.textContent = name;
+    fullImage.src = elementImage.src
+    fullImage.alt = elementDescription.textContent
+    fullImageText.textContent = elementDescription.textContent
   });
   //
 

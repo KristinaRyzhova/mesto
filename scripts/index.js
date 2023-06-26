@@ -130,16 +130,16 @@ function createPlaceCards(name, link) {
   //открытие попапа с большой фотографией
   elementImage.addEventListener('click', function () {
     openPopup(popupFullImages);
-    fullImage.src = elementImage.src
-    fullImage.alt = elementDescription.textContent
-    fullImageText.textContent = elementDescription.textContent
+    fullImage.src = link;
+    fullImage.alt = name;
+    fullImageText.textContent = name;
   });
   //
 
 
-
   return placeCard;
 }
+
 
 //подгружаем массив
 initialCards.forEach(function(item) {

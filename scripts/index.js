@@ -99,14 +99,18 @@ function handleAddFormSubmit(evt) {
 formElement.addEventListener('submit', handleAddFormSubmit);
 
 //использование template
-const popupFullImages = document.querySelector('#popup-full-image');
+
 const element = document.querySelector('.element');
 const elementsList = document.querySelector('.elements__list');
 const templateElement = document.querySelector('#element-place-cards').content.querySelector('.element');
 
+const popupFullImages = document.querySelector('#popup-open-full-image');
+const fullImageClose = document.querySelector('popup__close-full-image');
+const fullImageText = document.querySelector('popup__full-image-name');
+const fullImage = document.querySelector('popup__full-image');
+
 function createPlaceCards(name, link) {
-  const placeCard = templateElement.cloneNode(true);
-  
+  const placeCard = templateElement.cloneNode(true);  
   const elementImage = placeCard.querySelector('.element__image');
   const elementDescription = placeCard.querySelector('.element__description');
   const elementLike = placeCard.querySelector('.element__like');
@@ -124,17 +128,24 @@ function createPlaceCards(name, link) {
     placeCard.remove();
   })
 
-  elementImage.addEventListener('click', function() {
+
+  //открытие попапа с большой фотографией
+  elementImage.addEventListener('click', function () {
     openPopup(popupFullImages);
-    elementImage.src = link;
-    elementImage.alt - name;
-    elementDescription.textContent = name;
+
+    fullImage.src = link;
+    fullImageText.alt = name;
+    fullImageText.textContent = name;
   });
+  //
+
+
 
   return placeCard;
 }
 
+//подгружаем массив
 initialCards.forEach(function(item) {
   const newElement = createPlaceCards(item.name, item.link);
-  elementsList.prepend(newElement);
+  elementsList.append(newElement);
 });

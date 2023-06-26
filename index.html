@@ -27,51 +27,9 @@
         </div>
         <button class="profile__add-button" type="button" aria-label="Добавить фото"></button>
       </section>
-      <!--Секция elements-->
+      <!--place elements-->
       <section class="elements">
         <ul class="elements__list">
-          <li class="element">
-            <img src="./images/taj-mahal.jpg" class="element__image" alt="Индия, Тадж-Махал">
-            <div class="element__container">
-              <h2 class="element__description">Индия, Тадж-Махал</h2>
-              <button class="element__like" type="button" aria-label="нравится"></button>
-            </div>
-          </li>
-          <li class="element">
-            <img src="./images/prielbrusie.jpg" class="element__image" alt="Приэльбрусье, ущелье Терскол я и корова">
-            <div class="element__container">
-              <h2 class="element__description">Приэльбрусье</h2>
-              <button class="element__like" type="button" aria-label="нравится"></button>
-            </div>
-          </li>
-          <li class="element">
-            <img src="./images/barcelona.jpg" class="element__image" alt="Барселона, парк Гауди">
-            <div class="element__container">
-              <h2 class="element__description">Барселона, парк Гауди</h2>
-              <button class="element__like" type="button" aria-label="нравится"></button>
-            </div>
-          </li>
-          <li class="element">
-            <img src="./images/insbruck.jpg" class="element__image" alt="На вершине горы в Инсбруке">
-            <div class="element__container">
-              <h2 class="element__description">Инсбрук</h2>
-              <button class="element__like" type="button" aria-label="нравится"></button>
-            </div>
-          </li>
-          <li class="element">
-            <img src="./images/island.jpg" class="element__image" alt="Водопады Исландии осенью">
-            <div class="element__container">
-              <h2 class="element__description">Исландия, Barnafossar</h2>
-              <button class="element__like" type="button" aria-label="нравится"></button>
-            </div>
-          </li>
-          <li class="element">
-            <img src="./images/riga.jpg" class="element__image" alt="Уютный центр Риги">
-            <div class="element__container">
-              <h2 class="element__description">Рига</h2>
-              <button class="element__like" type="button" aria-label="нравится"></button>
-            </div>
-          </li>
         </ul>
       </section>
     </main>
@@ -81,20 +39,59 @@
         &copy; 2023 Mesto Russia
       </p>
     </footer>
-    <!--popup-->
-    <div class="popup">
-      <div class="popup__container">      
+    <!--popup open edit profile-->
+    <div class="popup" id="popup-edit-profile">
+      <div class="popup__container">
         <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="popup__form" name="popupForm">
-          <input class="popup__input popup__input_type_name" id="username" type="text" name="username" placeholder="Ваше имя">
-          <input class="popup__input popup__input_type_status" id="userstatus" type="text" name="userstatus" placeholder="О себе">
-          <button class="popup__save" type="submit"  aria-label="Сохранить и закрыть">Сохранить</button>
+          <input class="popup__input  popup__input_type_name" id="username" type="text" name="username"
+            placeholder="Ваше имя">
+          <input class="popup__input popup__input_type_status" id="userstatus" type="text" name="userstatus"
+            placeholder="О себе">
+          <button class="popup__save" type="submit" aria-label="Сохранить и закрыть">Сохранить</button>
+        </form>
+      </div>
+    </div>
+
+    <!--popup add new-place-->
+    <div class="popup" id="popup-add-place">
+      <div class="popup__container">
+        <button class="popup__close-add-place" type="button" aria-label="Закрыть"></button>
+        <h2 class="popup__title">Новое место</h2>
+        <form class="popup__form" name="popupForm">
+          <input class="popup__input popup__input_type_name" id="placename" type="text" name="placename"
+            placeholder="Название">
+          <input class="popup__input popup__input_type_status" id="placelink" type="text" name="placelink"
+            placeholder="Ссылка на картинку">
+          <button class="popup__save" type="submit" aria-label="Создать">Создать</button>
         </form>
       </div>
     </div>
   </div>
-  <script async src="./scripts/index.js"></script>
+
+  <!--попап картинки-->
+  <div class="popup" id="popup-full-image">
+    <div class="popup__full-image-container">
+      <img src="#" alt="" class="popup__full-image">
+      <h2 class="popup__full-image-name"></h2>
+      <button class="popup__close-full-image" type="button" aria-label="Закрыть"></button>
+    </div>
+  </div>
+
+  <!--Секция templates-->
+  <template id="element-place-cards">
+    <li class="element">
+      <img src="#" class="element__image" alt="">
+      <div class="element__container">
+        <h2 class="element__description"></h2>
+        <button class="element__like" type="button" aria-label="нравится"></button>
+        <button class="element__delite" type="button" aria-label="удалить"></button>
+      </div>
+    </li>
+  </template>
+
+  <script defer src="./scripts/index.js"></script>
 </body>
 
 </html>

@@ -7,7 +7,7 @@
   background-image: url('../../../images/like.svg');
   background-position: center;
   background-size: 22px 19px;
-  background-color: #fff;
+  background-color: transparent;
   background-repeat: no-repeat;
   cursor: pointer;
   transition: opacity .25s ease;
@@ -16,4 +16,8 @@
 
 .element__like:hover {
   opacity: .6;
+}
+
+.element__like:active {
+  background-image: url('../../../images/like-black.svg');
 }

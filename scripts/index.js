@@ -29,8 +29,8 @@ const popupEditProfile = document.querySelector('#popup-edit-profile');
 const popupEditOpen = document.querySelector('.profile__edit-button');
 const profileName = document.querySelector('.profile__name');
 const profileStatus = document.querySelector('.profile__subtitle');
-let userNameInput = document.querySelector('.popup__input_type_name');
-let userStatusInput = document.querySelector('.popup__input_type_status');
+const userNameInput = document.querySelector('.popup__input_type_name');
+const userStatusInput = document.querySelector('.popup__input_type_status');
 const formElement = document.querySelector('.popup__form');
 const popupEditClose = document.querySelector('.popup__close-button');
 
@@ -76,11 +76,8 @@ formElement.addEventListener('submit', handleFormSubmit);
 
 //форма добавления нового места
 const popupAddNewPlace = document.querySelector('#popup-add-place');
+const popupContainerAddNewPlace = document.querySelector('popup__container-add-new-place');
 const addNewPlaceButton = document.querySelector('.profile__add-button')
-const addName = document.querySelector('.place__name');
-const placeDescription = document.querySelector('.place__description');
-let addNameInput = document.querySelector('.popup__input_type__add-place');
-let placeDescriptionInput = document.querySelector('.popup__input_type_place-description');
 const closeAddPlaceCard = document.querySelector('.popup__close-add-place');
 
 addNewPlaceButton.addEventListener('click', function() {
@@ -90,24 +87,24 @@ addNewPlaceButton.addEventListener('click', function() {
 closeAddPlaceCard.addEventListener('click', function() {
   closePopup(popupAddNewPlace);
 });
-
+/*
 function handleAddFormSubmit(evt) {
   evt.preventDefault();
   closePopup(popupAddNewPlace);
 };
 
-formElement.addEventListener('submit', handleAddFormSubmit);
+formElement.addEventListener('submit', handleAddFormSubmit);*/
 
 //использование template
-
 const element = document.querySelector('.element');
 const elementsList = document.querySelector('.elements__list');
 const templateElement = document.querySelector('#element-place-cards').content.querySelector('.element');
 
 const popupFullImages = document.querySelector('#popup-open-full-image');
-const fullImageClose = document.querySelector('popup__close-full-image');
-const fullImageText = document.querySelector('popup__full-image-name');
-const fullImage = document.querySelector('popup__full-image');
+const popupFullImagesContainer = document.querySelector('.popup__full-image-container');
+const fullImageClose = document.querySelector('.popup__close-full-image');
+const fullImageText = document.querySelector('.popup__full-image-name');
+const fullImage = document.querySelector('.popup__full-image');
 
 function createPlaceCards(name, link) {
   const placeCard = templateElement.cloneNode(true);  
@@ -123,6 +120,7 @@ function createPlaceCards(name, link) {
   elementLike.addEventListener('click', function() {
     elementLike.classList.toggle('element__like_active');
   })
+
   elementDelite.addEventListener('click', function() {
     placeCard.remove();
   })
@@ -134,15 +132,38 @@ function createPlaceCards(name, link) {
     fullImage.alt = name;
     fullImageText.textContent = name;
   });
-  //
-
+  
+  fullImageClose.addEventListener('click', function() {
+    closePopup(popupFullImages);
+  });
 
   return placeCard;
 }
-
 
 //подгружаем массив
 initialCards.forEach(function(item) {
   const newElement = createPlaceCards(item.name, item.link);
   elementsList.append(newElement);
 });
+
+//Добавляем новое фото
+const formAddNewCard = document.querySelector('.popup__add-form');
+const addName = document.querySelector('.place__name');
+const placeDescription = document.querySelector('.place__description');
+const addNameInput = document.querySelector('.popup__input_type__add-place');
+const placeDescriptionInput = document.querySelector('.popup__input_type_place-description');
+
+function handleAddFormSubmit(evt) {
+  evt.preventDefault();
+  
+
+
+
+
+
+
+  formAddNewCard.reset();
+  closePopup(popupAddNewPlace);
+};
+
+formAddNewCard.addEventListener('submit', handleAddFormSubmit);

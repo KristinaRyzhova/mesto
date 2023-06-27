@@ -87,13 +87,6 @@ addNewPlaceButton.addEventListener('click', function() {
 closeAddPlaceCard.addEventListener('click', function() {
   closePopup(popupAddNewPlace);
 });
-/*
-function handleAddFormSubmit(evt) {
-  evt.preventDefault();
-  closePopup(popupAddNewPlace);
-};
-
-formElement.addEventListener('submit', handleAddFormSubmit);*/
 
 //использование template
 const element = document.querySelector('.element');
@@ -106,7 +99,7 @@ const fullImageClose = document.querySelector('.popup__close-full-image');
 const fullImageText = document.querySelector('.popup__full-image-name');
 const fullImage = document.querySelector('.popup__full-image');
 
-function createPlaceCards(name, link) {
+function createPlaceCards({name, link}) {
   const placeCard = templateElement.cloneNode(true);  
   const elementImage = placeCard.querySelector('.element__image');
   const elementDescription = placeCard.querySelector('.element__description');
@@ -141,9 +134,12 @@ function createPlaceCards(name, link) {
 }
 
 //подгружаем массив
+function renderCard(data, container) {
+  container.prepend(createPlaceCards(data));
+}
+
 initialCards.forEach(function(item) {
-  const newElement = createPlaceCards(item.name, item.link);
-  elementsList.append(newElement);
+  renderCard(item, elementsList);
 });
 
 //Добавляем новое фото
@@ -153,17 +149,17 @@ const placeDescription = document.querySelector('.place__description');
 const addNameInput = document.querySelector('.popup__input_type__add-place');
 const placeDescriptionInput = document.querySelector('.popup__input_type_place-description');
 
+
+
 function handleAddFormSubmit(evt) {
   evt.preventDefault();
-  
 
-
-
-
-
+  const placeDescription = placeDescriptionInput.value;
+  const addName = addNameInput.value;
+  renderCard({name:placeDescription, link:addName}, elementsList);
 
   formAddNewCard.reset();
   closePopup(popupAddNewPlace);
-};
+}
 
 formAddNewCard.addEventListener('submit', handleAddFormSubmit);

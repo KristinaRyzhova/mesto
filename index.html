@@ -53,23 +53,21 @@
         </form>
       </div>
     </div>
-
     <!--popup add new-place-->
     <div class="popup" id="popup-add-place">
       <div class="popup__container-add-new-place">
         <button class="popup__close-add-place" type="button" aria-label="Закрыть"></button>
         <h2 class="popup__title">Новое место</h2>
         <form class="popup__add-form" name="popupAddForm">
-          <input class="popup__input popup__input_type_name" id="placename" type="text" name="placename"
+          <input class="popup__input popup__input_type_place-description" id="placename" type="text" name="placename"
             placeholder="Название">
-          <input class="popup__input popup__input_type_status" id="placelink" type="text" name="placelink"
+          <input class="popup__input popup__input_type_add-place" id="placelink" type="text" name="placelink"
             placeholder="Ссылка на картинку">
           <button class="popup__save" type="submit" aria-label="Создать">Создать</button>
         </form>
       </div>
     </div>
   </div>
-
   <!--попап картинки-->
   <div class="popup" id="popup-open-full-image">
     <div class="popup__full-image-container">
@@ -78,7 +76,6 @@
       <button class="popup__close-full-image" type="button" aria-label="Закрыть"></button>
     </div>
   </div>
-
   <!--Секция templates-->
   <template id="element-place-cards">
     <li class="element">
@@ -90,7 +87,6 @@
       </div>
     </li>
   </template>
-
   <script defer src="./scripts/index.js"></script>
 </body>
 

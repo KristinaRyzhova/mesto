@@ -144,20 +144,14 @@ initialCards.forEach(function(item) {
 
 //Добавляем новое фото
 const formAddNewCard = document.querySelector('.popup__add-form');
-const addName = document.querySelector('.place__name');
-const placeDescription = document.querySelector('.place__description');
-const addNameInput = document.querySelector('.popup__input_type__add-place');
+const addNameInput = document.querySelector('.popup__input_type_add-place');
 const placeDescriptionInput = document.querySelector('.popup__input_type_place-description');
-
-
 
 function handleAddFormSubmit(evt) {
   evt.preventDefault();
-
-  const placeDescription = placeDescriptionInput.value;
-  const addName = addNameInput.value;
-  renderCard({name:placeDescription, link:addName}, elementsList);
-
+  const descriptionNewCard = placeDescriptionInput.value;
+  const linkNewCard = addNameInput.value;
+  renderCard({name:descriptionNewCard, link:linkNewCard}, elementsList);
   formAddNewCard.reset();
   closePopup(popupAddNewPlace);
 }

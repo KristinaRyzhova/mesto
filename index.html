@@ -44,12 +44,14 @@
       <div class="popup__container">
         <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__form" name="popupForm">
-          <input class="popup__input  popup__input_type_name" id="username" type="text" name="username"
-            placeholder="Ваше имя">
+        <form class="popup__form" name="popupEditProfileForm" novalidate>
+          <input class="popup__input popup__input_type_name" id="username" type="text" name="username"
+            placeholder="Ваше имя" minlength="2" maxlength="40" required>
+          <span class="popup__input-error" id="username-error"></span>
           <input class="popup__input popup__input_type_status" id="userstatus" type="text" name="userstatus"
-            placeholder="О себе">
-          <button class="popup__save" type="submit" aria-label="Сохранить и закрыть">Сохранить</button>
+            placeholder="О себе" minlength="2" maxlength="200" required>
+          <span class="popup__input-error" id="userstatus-error"></span>
+          <button class="popup__submit" type="submit" aria-label="Сохранить и закрыть">Сохранить</button>
         </form>
       </div>
     </div>
@@ -58,12 +60,14 @@
       <div class="popup__container">
         <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
         <h2 class="popup__title">Новое место</h2>
-        <form class="popup__form" name="popupAddForm">
+        <form class="popup__form" name="popupAddForm" novalidate>
           <input class="popup__input popup__input_type_place-description" id="placename" type="text" name="placename"
-            placeholder="Название">
-          <input class="popup__input popup__input_type_add-place" id="placelink" type="text" name="placelink"
+            placeholder="Название" minlength="2" maxlength="30" required>
+          <span class="popup__input-error" id="placename-error"></span>
+          <input class="popup__input popup__input_type_add-place" id="placelink" type="url" name="placelink"
             placeholder="Ссылка на картинку">
-          <button class="popup__save" type="submit" aria-label="Создать">Создать</button>
+          <span class="popup__input-error" id="placelink-error"></span>
+          <button class="popup__submit" type="submit" aria-label="Создать">Создать</button>
         </form>
       </div>
     </div>
@@ -87,6 +91,7 @@
       </div>
     </li>
   </template>
+  <script defer src="./scripts/validation.js"></script>
   <script defer src="./scripts/cards.js"></script>
   <script defer src="./scripts/index.js"></script>
 </body>

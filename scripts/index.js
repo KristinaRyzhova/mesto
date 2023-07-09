@@ -18,6 +18,25 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
 
+//закрытие клавишей esc
+function closePopupEsc(evt) {
+  let popup = document.querySelector('.popup_opened');
+    if (evt.key === 'Escape') {
+      popup.classList.remove('popup_opened');
+  }
+}
+document.addEventListener('keydown', closePopupEsc);
+
+//закрытие по оверлей
+const popupArr = Array.from(document.querySelectorAll('.popup'));
+popupArr.forEach(function(popup) {
+  popup.addEventListener('mousedown', function(evt) {
+    if (evt.target === evt.currentTarget) {
+      closePopup(popup);
+    }
+  });
+});
+
 //вводим в инпуты начальную информацию
 function setPopupEditProfileInputValue() {
   userNameInput.value = profileName.textContent.trim();

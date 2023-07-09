@@ -11,21 +11,22 @@ const popupEditClose = popupEditProfile.querySelector('.popup__close-button');
 //открываем попап
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupEsc);
 }
 
 //закрываем попап
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListenerEventListener('keydown', closePopupEsc);
 }
 
 //закрытие клавишей esc
 function closePopupEsc(evt) {
-  let popup = document.querySelector('.popup_opened');
     if (evt.key === 'Escape') {
-      popup.classList.remove('popup_opened');
+      const popup = document.querySelector('.popup_opened');
+      closePopup(popup);
   }
 }
-document.addEventListener('keydown', closePopupEsc);
 
 //закрытие по оверлей
 const popupArr = Array.from(document.querySelectorAll('.popup'));

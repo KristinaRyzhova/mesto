@@ -80,7 +80,7 @@ addNewPlaceButton.addEventListener('click', function() {
   openPopup(popupAddNewPlace);
   disabledButton(submitBattonAdd, config);
   formAddNewCard.reset();
-  //hideError(inputElement, errorElement, config)
+  //hideError(inputElement, errorElement, config);
 });
 
 closeAddPlaceCard.addEventListener('click', function() {

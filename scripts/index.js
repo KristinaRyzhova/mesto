@@ -49,11 +49,13 @@ function setNodeEditProfileTextValue() {
   profileName.textContent = userNameInput.value;
   profileStatus.textContent = userStatusInput.value;
 }
+
 //открываем форму
 popupEditOpen.addEventListener('click', function() {
   openPopup(popupEditProfile);
   setPopupEditProfileInputValue();
 });
+
 
 //закрываем форму
 popupEditClose.addEventListener('click', function() {
@@ -72,9 +74,13 @@ formElement.addEventListener('submit', handleEditProfileFormSubmit);
 const popupAddNewPlace = document.querySelector('#popup-add-place');
 const addNewPlaceButton = document.querySelector('.profile__add-button')
 const closeAddPlaceCard = popupAddNewPlace.querySelector('.popup__close-button');
+const submitBattonAdd = popupAddNewPlace.querySelector('.popup__button');
 
 addNewPlaceButton.addEventListener('click', function() {
   openPopup(popupAddNewPlace);
+  disabledButton(submitBattonAdd, config);
+  formAddNewCard.reset();
+  //hideError(inputElement, errorElement, config)
 });
 
 closeAddPlaceCard.addEventListener('click', function() {
@@ -138,6 +144,7 @@ initialCards.forEach(function(item) {
 const formAddNewCard = popupAddNewPlace.querySelector('.popup__form');
 const addNameInput = popupAddNewPlace.querySelector('.popup__input_type_add-place');
 const placeDescriptionInput = popupAddNewPlace.querySelector('.popup__input_type_place-description');
+
 
 function handleAddFormSubmit(evt) {
   evt.preventDefault();

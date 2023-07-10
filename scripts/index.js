@@ -17,7 +17,7 @@ function openPopup(popup) {
 //закрываем попап
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  document.removeEventListenerEventListener('keydown', closePopupEsc);
+  document.removeEventListener('keydown', closePopupEsc);
 }
 
 //закрытие клавишей esc

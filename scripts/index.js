@@ -7,6 +7,7 @@ const userNameInput = popupEditProfile.querySelector('.popup__input_type_name');
 const userStatusInput = popupEditProfile.querySelector('.popup__input_type_status');
 const formElement = popupEditProfile.querySelector('.popup__form');
 const popupEditClose = popupEditProfile.querySelector('.popup__close-button');
+const submitBattonEdit = popupEditProfile.querySelector('.popup__button');
 
 //открываем попап
 function openPopup(popup) {
@@ -54,8 +55,8 @@ function setNodeEditProfileTextValue() {
 popupEditOpen.addEventListener('click', function() {
   openPopup(popupEditProfile);
   setPopupEditProfileInputValue();
+  disabledButton(submitBattonEdit, config);
 });
-
 
 //закрываем форму
 popupEditClose.addEventListener('click', function() {
@@ -144,7 +145,6 @@ initialCards.forEach(function(item) {
 const formAddNewCard = popupAddNewPlace.querySelector('.popup__form');
 const addNameInput = popupAddNewPlace.querySelector('.popup__input_type_add-place');
 const placeDescriptionInput = popupAddNewPlace.querySelector('.popup__input_type_place-description');
-
 
 function handleAddFormSubmit(evt) {
   evt.preventDefault();

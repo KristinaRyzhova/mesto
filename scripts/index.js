@@ -1,16 +1,24 @@
+import { initialCards } from '../scripts/constants.js';
+import { Card } from '../scripts/Card.js';
+
 const popupEditProfile = document.querySelector('#popup-edit-profile');
 const popupEditOpen = document.querySelector('.profile__edit-button');
 const profileName = document.querySelector('.profile__name');
 const profileStatus = document.querySelector('.profile__subtitle');
-
 const userNameInput = popupEditProfile.querySelector('.popup__input_type_name');
 const userStatusInput = popupEditProfile.querySelector('.popup__input_type_status');
 const formElement = popupEditProfile.querySelector('.popup__form');
 const popupEditClose = popupEditProfile.querySelector('.popup__close-button');
 const submitBattonEdit = popupEditProfile.querySelector('.popup__button');
+const elementsList = document.querySelector('.elements__list');
+
+export const popupFullImages = document.querySelector('#popup-open-full-image');
+export const fullImageText = popupFullImages.querySelector('.popup__full-image-name');
+export const fullImage = popupFullImages.querySelector('.popup__full-image');
+const fullImageClose = popupFullImages.querySelector('.popup__close-button');
 
 //открываем попап
-function openPopup(popup) {
+export function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupEsc);
 }
@@ -23,16 +31,16 @@ function closePopup(popup) {
 
 //закрытие клавишей esc
 function closePopupEsc(evt) {
-    if (evt.key === 'Escape') {
-      const popup = document.querySelector('.popup_opened');
-      closePopup(popup);
+  if (evt.key === 'Escape') {
+    const popup = document.querySelector('.popup_opened');
+    closePopup(popup);
   }
 }
 
 //закрытие по оверлей
 const popupArr = Array.from(document.querySelectorAll('.popup'));
-popupArr.forEach(function(popup) {
-  popup.addEventListener('mousedown', function(evt) {
+popupArr.forEach(function (popup) {
+  popup.addEventListener('mousedown', function (evt) {
     if (evt.target === evt.currentTarget) {
       closePopup(popup);
     }
@@ -88,56 +96,24 @@ closeAddPlaceCard.addEventListener('click', function() {
   closePopup(popupAddNewPlace);
 });
 
-//использование template
-const element = document.querySelector('.element');
-const elementsList = document.querySelector('.elements__list');
-const templateElement = document.querySelector('#element-place-cards').content.querySelector('.element');
-
-const popupFullImages = document.querySelector('#popup-open-full-image');
-const fullImageClose = popupFullImages.querySelector('.popup__close-button');
-const fullImageText = popupFullImages.querySelector('.popup__full-image-name');
-const fullImage = popupFullImages.querySelector('.popup__full-image');
-
-function createPlaceCards({name, link}) {
-  const placeCard = templateElement.cloneNode(true);  
-  const elementImage = placeCard.querySelector('.element__image');
-  const elementDescription = placeCard.querySelector('.element__description');
-  const elementLike = placeCard.querySelector('.element__like');
-  const elementDelite = placeCard.querySelector('.element__delite');
- 
-  elementImage.src = link;
-  elementImage.alt = name;
-  elementDescription.textContent = name;
-
-  elementLike.addEventListener('click', function() {
-    elementLike.classList.toggle('element__like_active');
-  })
-
-  elementDelite.addEventListener('click', function() {
-    placeCard.remove();
-  })
-
-  //открытие попапа с большой фотографией
-  elementImage.addEventListener('click', function () {
-    openPopup(popupFullImages);
-    fullImage.src = link;
-    fullImage.alt = name;
-    fullImageText.textContent = name;
-  });
-  
-  return placeCard;
-}
-
+//Закрываем большое фото
 fullImageClose.addEventListener('click', function() {
   closePopup(popupFullImages);
 });
 
-//подгружаем массив
-function renderCard(data, container) {
-  container.prepend(createPlaceCards(data));
+//Создаем карточку
+function createCard(element) {
+  const card = new Card(element, '#element-place-cards');
+  const cardElement = card.createCardElement();
+  return cardElement;
 }
 
-initialCards.forEach(function(item) {
+const renderCard = (data) => {
+  elementsList.prepend(createCard(data));
+}
+
+//подгружаем массив
+initialCards.forEach((item) => {
   renderCard(item, elementsList);
 });
 

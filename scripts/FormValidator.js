@@ -6,8 +6,8 @@ export class FormValidator {
     this._inactiveButtonClass = config.inactiveButtonClass;
     this._inputErrorClass = config.inputErrorClass;
     this._errorClass = config.errorClass;
-    this._formElement = formElement;    
-		this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
+    this._formElement = formElement;
+    this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
   }
 
   //показать ошибку
@@ -56,7 +56,7 @@ export class FormValidator {
 
   //листнер элементов формы
   _setEventListener() {
-    this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+    this._inputList = this._formElement.querySelectorAll(this._inputSelector);
     this._toggleButtonState(this._formElement.checkValidity());
 
     this._inputList.forEach((inputElement) => {
@@ -75,7 +75,6 @@ export class FormValidator {
   enableValidation() {
     this._setEventListener();
   };
-
 };
 
 

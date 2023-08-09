@@ -102,7 +102,6 @@ addNewPlaceButton.addEventListener('click', function() {
   openPopup(popupAddNewPlace);
   formValidatorAddCard.enableValidation();
   //disabledButton(submitBattonAdd, config);
-  formAddNewCard.reset();
 });
 
 closeAddPlaceCard.addEventListener('click', function() {

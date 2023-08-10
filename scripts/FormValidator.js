@@ -19,7 +19,7 @@ export class FormValidator {
   //скрыть ошибку
   _hideError(inputElement, errorElement) {
     inputElement.classList.remove(this._inputErrorClass);
-    errorElement.textContent = inputElement.validationMessage;
+    errorElement.textContent = '';
   };
 
   //проверка валидности инпутов

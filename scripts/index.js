@@ -77,8 +77,7 @@ formValidatorEditProfile.enableValidation();
 popupEditOpen.addEventListener('click', function() {
   openPopup(popupEditProfile);
   setPopupEditProfileInputValue();
-  formValidatorEditProfile.enableValidation();
-  //disabledButton(submitBattonEdit);
+  formValidatorEditProfile.resetValidation();
 });
 
 //закрываем форму редактирования профиля
@@ -100,8 +99,8 @@ formValidatorAddCard.enableValidation();
 
 addNewPlaceButton.addEventListener('click', function() {
   openPopup(popupAddNewPlace);
-  formValidatorAddCard.enableValidation();
-  //disabledButton(submitBattonAdd, config);
+  formValidatorAddCard.resetValidation();
+  formAddNewCard.reset();
 });
 
 closeAddPlaceCard.addEventListener('click', function() {
@@ -135,7 +134,6 @@ function handleAddFormSubmit(evt) {
   const descriptionNewCard = placeDescriptionInput.value;
   const linkNewCard = addNameInput.value;
   renderCard({name:descriptionNewCard, link:linkNewCard}, elementsList);
-  formAddNewCard.reset();
   closePopup(popupAddNewPlace);
 };
 

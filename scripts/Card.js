@@ -37,6 +37,7 @@ export class Card {
 
   _handleElementDelete = () => { //удаление фото из галереи
     this._element.remove();
+    this._element = null;
   };
 
   //открытие попапа с большой фотографией

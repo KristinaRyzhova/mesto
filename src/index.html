@@ -5,19 +5,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Проект: Место</title>
-  <link href="pages/index.css" rel="stylesheet">
 </head>
 
 <body class="body">
   <div class="page">
     <!--Секция header-->
     <header class="header">
-      <img src="./images/logo.svg" alt="логотип проекта" class="header__logo">
+      <img src="<%=require('./images/logo.svg')%>" alt="логотип проекта" class="header__logo">
     </header>
     <main>
       <!--Секция profile-->
       <section class="profile">
-        <img src="./images/image.jpg" class="profile__avatar" alt="Фото профиля">
+        <img src="<%=require('./images/image.jpg')%>" class="profile__avatar" alt="Фото профиля">
         <div class="profile__info">
           <div class="profile__title">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -91,7 +90,5 @@
       </div>
     </li>
   </template>
-  <script defer src="./scripts/index.js" type="module"></script>
 </body>
-
 </html>

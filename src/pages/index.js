@@ -1,3 +1,5 @@
+import '../pages/index.css';
+
 import { initialCards, config } from '../scripts/constants.js';
 import { Card } from '../scripts/Card.js';
 import { FormValidator } from '../scripts/FormValidator.js'
@@ -10,12 +12,10 @@ const userNameInput = popupEditProfile.querySelector('.popup__input_type_name');
 const userStatusInput = popupEditProfile.querySelector('.popup__input_type_status');
 const formEditProfile = popupEditProfile.querySelector('.popup__form');
 const popupEditClose = popupEditProfile.querySelector('.popup__close-button');
-//const submitBattonEdit = popupEditProfile.querySelector('.popup__button');
 
 const popupAddNewPlace = document.querySelector('#popup-add-place');
 const addNewPlaceButton = document.querySelector('.profile__add-button')
 const closeAddPlaceCard = popupAddNewPlace.querySelector('.popup__close-button');
-//const submitBattonAdd = popupAddNewPlace.querySelector('.popup__button');
 
 const elementsList = document.querySelector('.elements__list');
 

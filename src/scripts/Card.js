@@ -1,4 +1,4 @@
-import { popupFullImages, fullImageText, fullImage, openPopup } from '../pages/index.js'
+//import { popupFullImages, fullImageText, fullImage, openPopup } from '../pages/index.js'
 
 export class Card {
   constructor(data, templateSelector) {
@@ -40,17 +40,17 @@ export class Card {
     this._element = null;
   };
 
-  //открытие попапа с большой фотографией
+  /* //открытие попапа с большой фотографией
   _handleOpenFullImage = () => {
     openPopup(popupFullImages);
     fullImage.src = this._link;
     fullImage.alt = this._name;
     fullImageText.textContent = this._name;
-  };
+  }; */
 
   _setEventListeners = () => {
     this._elementLike.addEventListener('click', () => { this._handleElementLike() });
     this._elementDelite.addEventListener('click', () => { this._handleElementDelete() });
-    this._elementImage.addEventListener('click', () => { this._handleOpenFullImage() });
+    //this._elementImage.addEventListener('click', () => { this._handleOpenFullImage() });
   };
 };

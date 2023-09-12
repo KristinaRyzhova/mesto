@@ -4,8 +4,7 @@ import { initialCards, config } from '../scripts/constants.js';
 import { Card } from '../scripts/Card.js';
 import { FormValidator } from '../scripts/FormValidator.js';
 import { Section } from '../scripts/Section.js';
-import { Popup } from '../scripts/Popup.js';
-//import { PopupWithImage } from '../scripts/PopupWithImage.js';
+import { PopupWithImage } from '../scripts/PopupWithImage.js';
 
 const popupEditProfile = document.querySelector('#popup-edit-profile');
 const popupEditOpen = document.querySelector('.profile__edit-button');
@@ -25,7 +24,6 @@ const elementsList = document.querySelector('.elements__list');
 export const popupFullImages = document.querySelector('#popup-open-full-image');
 export const fullImageText = popupFullImages.querySelector('.popup__full-image-name');
 export const fullImage = popupFullImages.querySelector('.popup__full-image');
-const fullImageClose = popupFullImages.querySelector('.popup__close-button');
 
 const formAddNewCard = popupAddNewPlace.querySelector('.popup__form');
 const addNameInput = popupAddNewPlace.querySelector('.popup__input_type_add-place');
@@ -33,7 +31,7 @@ const placeDescriptionInput = popupAddNewPlace.querySelector('.popup__input_type
 
 //Создаем карточку
 function createCard(element) {
-  const card = new Card(element, '#element-place-cards');
+  const card = new Card(element, '#element-place-cards', handleCardClick);
   const cardElement = card.createCardElement();
   return cardElement;
 };
@@ -50,6 +48,19 @@ const cardList = new Section(
   elementsList
 );
 cardList.renderer();
+
+//экземпляр класса попапа большого фото
+const popupWithImage = new PopupWithImage('#popup-open-full-image');
+popupWithImage.setEventListeners();
+
+function handleCardClick(name, link) {
+  popupWithImage.open(name, link);
+};
+///////////////////выше линии все работает!///////////
+
+
+
+
 
 
 
@@ -70,20 +81,20 @@ const formValidatorEditProfile = new FormValidator(config, formEditProfile);
 formValidatorEditProfile.enableValidation();
 
 popupEditOpen.addEventListener('click', function() {
-  openPopup(popupEditProfile);
+  open(popupEditProfile);
   setPopupEditProfileInputValue();
   formValidatorEditProfile.resetValidation();
 });
 
 //закрываем форму редактирования профиля
 popupEditClose.addEventListener('click', function() {
-  closePopup(popupEditProfile);
+  close(popupEditProfile);
 });
 
 function handleEditProfileFormSubmit(evt) {
   evt.preventDefault();
   setNodeEditProfileTextValue();
-  closePopup(popupEditProfile);
+  close(popupEditProfile);
 };
 
 formEditProfile.addEventListener('submit', handleEditProfileFormSubmit);
@@ -93,19 +104,16 @@ const formValidatorAddCard = new FormValidator(config, formAddNewCard);
 formValidatorAddCard.enableValidation();
 
 addNewPlaceButton.addEventListener('click', function() {
-  openPopup(popupAddNewPlace);
+  open(popupAddNewPlace);
   formValidatorAddCard.resetValidation();
   formAddNewCard.reset();
 });
 
 closeAddPlaceCard.addEventListener('click', function() {
-  closePopup(popupAddNewPlace);
+  close(popupAddNewPlace);
 });
 
-//Закрываем большое фото
-fullImageClose.addEventListener('click', function() {
-  closePopup(popupFullImages);
-});
+
 
 //Добавляем новое фото
 function handleAddFormSubmit(evt) {
@@ -113,7 +121,7 @@ function handleAddFormSubmit(evt) {
   const descriptionNewCard = placeDescriptionInput.value;
   const linkNewCard = addNameInput.value;
   renderCard({name:descriptionNewCard, link:linkNewCard}, elementsList);
-  closePopup(popupAddNewPlace);
+  close(popupAddNewPlace);
 };
 
 formAddNewCard.addEventListener('submit', handleAddFormSubmit);
@@ -164,3 +172,20 @@ popupArr.forEach(function (popup) {
     }
   });
 }); */
+
+/* //открытие попапа с большой фотографией
+  _handleOpenFullImage = () => {
+    openPopup(popupFullImages);
+    fullImage.src = this._link;
+    fullImage.alt = this._name;
+    fullImageText.textContent = this._name;
+  };
+
+const fullImageClose = popupFullImages.querySelector('.popup__close-button');
+
+//Закрываем большое фото
+fullImageClose.addEventListener('click', function() {
+  close(popupFullImages);
+});
+*/
+  

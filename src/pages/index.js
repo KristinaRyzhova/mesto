@@ -10,8 +10,8 @@ import { UserInfo } from '../scripts/UserInfo.js'
 
 const popupEditProfile = document.querySelector('#popup-edit-profile');
 const popupEditOpen = document.querySelector('.profile__edit-button');
-const profileName = document.querySelector('.profile__name');
-const profileStatus = document.querySelector('.profile__subtitle');
+//const profileName = document.querySelector('.profile__name');
+//const profileStatus = document.querySelector('.profile__subtitle');
 const userNameInput = popupEditProfile.querySelector('.popup__input_type_name');
 const userStatusInput = popupEditProfile.querySelector('.popup__input_type_status');
 const formEditProfile = popupEditProfile.querySelector('.popup__form');
@@ -22,8 +22,8 @@ const addNewPlaceButton = document.querySelector('.profile__add-button');
 const elementsList = document.querySelector('.elements__list');
 
 const formAddNewCard = popupAddNewPlace.querySelector('.popup__form');
-const addNameInput = popupAddNewPlace.querySelector('.popup__input_type_add-place');
-const placeDescriptionInput = popupAddNewPlace.querySelector('.popup__input_type_place-description');
+//const addNameInput = popupAddNewPlace.querySelector('.popup__input_type_add-place');
+//const placeDescriptionInput = popupAddNewPlace.querySelector('.popup__input_type_place-description');
 
 //Создаем карточку
 function createCard(element) {
@@ -67,7 +67,7 @@ const userInfo = new UserInfo({
 
 //создаем экземпляр попапа редактирования профиля
 const editProfilePopup = new PopupWithForm('#popup-edit-profile', (data) => {
-  userInfo.setUserInfo(data);
+  userInfo.setUserInfo(data);  ///// ????????????
   editProfilePopup.close();
 });
 editProfilePopup.setEventListeners();
@@ -83,22 +83,33 @@ popupEditOpen.addEventListener('click', handleEditProfileForm);
 
 
 
+//форма добавления нового места
+const popupAddNewCardPlace = new PopupWithForm('#popup-add-place', (data) => {
+  cardList.addItem(createCard(data));    ///// ????????????
+  popupAddNewCardPlace.close();
+});
+popupAddNewCardPlace.setEventListeners();
+
+const handleAddNewCardForm = () => {
+  popupAddNewCardPlace.open();
+  formValidatorAddCard.resetValidation();
+}
+addNewPlaceButton.addEventListener('click', handleAddNewCardForm);
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 /* 
-//форма добавления нового места
-
-
-addNewPlaceButton.addEventListener('click', function() {
-  open(popupAddNewPlace);
-  formValidatorAddCard.resetValidation();
-  formAddNewCard.reset();
-});
-
-
-
 //Добавляем новое фото
 function handleAddFormSubmit(evt) {
   evt.preventDefault();
@@ -109,14 +120,6 @@ function handleAddFormSubmit(evt) {
 };
 
 formAddNewCard.addEventListener('submit', handleAddFormSubmit); */
-
-
-
-
-
-
-
-
 
 
 /* const popupFullImages = document.querySelector('#popup-open-full-image');

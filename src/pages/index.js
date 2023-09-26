@@ -1,5 +1,4 @@
 import '../pages/index.css';
-
 import { initialCards, config } from '../scripts/constants.js';
 import { Card } from '../scripts/Card.js';
 import { FormValidator } from '../scripts/FormValidator.js';
@@ -73,27 +72,27 @@ const editProfilePopup = new PopupWithForm('#popup-edit-profile', (data) => {
 editProfilePopup.setEventListeners();
 
 //открываем форму редактирования профиля и вводим в инпуты начальную информацию
-const handleEditProfileForm = function () {
+const handleEditProfileForm = () => {
   editProfilePopup.open();
-  userNameInput.value = userInfo.getUserInfo().name;
-  userStatusInput.value = userInfo.getUserInfo().status;
+  const infoInput = userInfo.getUserInfo();
+  userNameInput.value = infoInput.name;
+  userStatusInput.value = infoInput.status;
   formValidatorEditProfile.resetValidation();
 };
 popupEditOpen.addEventListener('click', handleEditProfileForm);
 
-
-
-//форма добавления нового места
+//создаем экземпляр попапа добавления нового места
 const popupAddNewCardPlace = new PopupWithForm('#popup-add-place', (data) => {
   cardList.addItem(createCard(data));    ///// ????????????
   popupAddNewCardPlace.close();
 });
 popupAddNewCardPlace.setEventListeners();
 
+//открываем форму добавления карточки
 const handleAddNewCardForm = () => {
   popupAddNewCardPlace.open();
   formValidatorAddCard.resetValidation();
-}
+};
 addNewPlaceButton.addEventListener('click', handleAddNewCardForm);
 
 

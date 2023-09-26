@@ -6,13 +6,13 @@ export class PopupWithForm extends Popup {
     this._callbackSubmitForm = callbackSubmitForm;
     this._popupForm = this._popup.querySelector('.popup__form');
     this._inputList = Array.from(this._popupForm.querySelectorAll('.popup__input'));
-  }
+  };
 
   _getInputValues() {
-    this._inputValue = {};
-    console.log('1');
+    this._inputValue = {};    
     this._inputList.forEach((input) => {
         this._inputValue[input.name] = input.value;
+        console.log('1');
       });
       return this._inputValue;
     };

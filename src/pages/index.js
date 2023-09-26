@@ -81,7 +81,7 @@ const handleEditProfileForm = () => {
 };
 popupEditOpen.addEventListener('click', handleEditProfileForm);
 
-//создаем экземпляр попапа добавления нового места
+//создаем экземпляр попапа добавления нового места //////
 const popupAddNewCardPlace = new PopupWithForm('#popup-add-place', (data) => {
   cardList.addItem(createCard(data));    ///// ????????????
   popupAddNewCardPlace.close();

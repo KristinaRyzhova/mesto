@@ -17,8 +17,7 @@ const userStatusInput = popupEditProfile.querySelector('.popup__input_type_statu
 const formEditProfile = popupEditProfile.querySelector('.popup__form');
 
 const popupAddNewPlace = document.querySelector('#popup-add-place');
-const addNewPlaceButton = document.querySelector('.profile__add-button')
-const closeAddPlaceCard = popupAddNewPlace.querySelector('.popup__close-button');
+const addNewPlaceButton = document.querySelector('.profile__add-button');
 
 const elementsList = document.querySelector('.elements__list');
 
@@ -66,64 +65,21 @@ const userInfo = new UserInfo({
   userInfoSelector: '.profile__subtitle'
 });
 
-//открываем форму редактирования профиля
-const editProfilePopup = new PopupWithForm('#popup-edit-profile', data => {
+//создаем экземпляр попапа редактирования профиля
+const editProfilePopup = new PopupWithForm('#popup-edit-profile', (data) => {
   userInfo.setUserInfo(data);
   editProfilePopup.close();
 });
-
 editProfilePopup.setEventListeners();
 
+//открываем форму редактирования профиля и вводим в инпуты начальную информацию
 const handleEditProfileForm = function () {
   editProfilePopup.open();
   userNameInput.value = userInfo.getUserInfo().name;
   userStatusInput.value = userInfo.getUserInfo().status;
   formValidatorEditProfile.resetValidation();
 };
-
 popupEditOpen.addEventListener('click', handleEditProfileForm);
-
-function handleEditProfileFormSubmit(evt) {
-  evt.preventDefault();
-
-  
-  popupEditProfile.close();
-};
-
-formEditProfile.addEventListener('submit', handleEditProfileFormSubmit);
-
-
-
-
-/* const editProfilePopup = new PopupWithForm('#popup-edit-profile', handleEditProfileFormSubmit);
-editProfilePopup.setEventListeners();
-
-const handleEditProfileForm = function () {
-  editProfilePopup.open();
-
-  
-
-  formValidatorEditProfile.resetValidation();
-};
-popupEditOpen.addEventListener('click', handleEditProfileForm);
-
-function handleEditProfileFormSubmit(evt) {
-  evt.preventDefault();
-
-  
-  popupEditProfile.close();
-};
-
-formEditProfile.addEventListener('submit', handleEditProfileFormSubmit); */
-
-
-
-
-
-
-
-
-
 
 
 

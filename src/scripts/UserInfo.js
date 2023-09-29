@@ -7,12 +7,12 @@ export class UserInfo {
   getUserInfo() {
     return {
       name: this._userName.textContent,
-      status: this._userInfo.textContent
+      info: this._userInfo.textContent
     };
   };
   
-  setUserInfo({ name, status }) {
-    this._userName.textContent = name;
-    this._userInfo.textContent = status;
+  setUserInfo(data) {
+    this._userName.textContent = data.username;
+    this._userInfo.textContent = data.userinfo;
   };
 };

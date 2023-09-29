@@ -1,22 +1,22 @@
 import '../pages/index.css';
-import { initialCards, config } from '../scripts/constants.js';
-import { Card } from '../scripts/Card.js';
-import { FormValidator } from '../scripts/FormValidator.js';
-import { Section } from '../scripts/Section.js';
-import { PopupWithImage } from '../scripts/PopupWithImage.js';
-import { PopupWithForm } from '../scripts/PopupWithForm.js';
-import { UserInfo } from '../scripts/UserInfo.js'
+import { initialCards, config } from '../utils/constants.js';
+import { Card } from '../components/Card.js';
+import { FormValidator } from '../components/FormValidator.js';
+import { Section } from '../components/Section.js';
+import { PopupWithImage } from '../components/PopupWithImage.js';
+import { PopupWithForm } from '../components/PopupWithForm.js';
+import { UserInfo } from '../components/UserInfo.js'
 
 const popupEditProfile = document.querySelector('#popup-edit-profile');
 const popupEditOpen = document.querySelector('.profile__edit-button');
 const userNameInput = popupEditProfile.querySelector('.popup__input_type_name');
 const userInfoInput = popupEditProfile.querySelector('.popup__input_type_info');
-const formEditProfile = popupEditProfile.querySelector('.popup__form');
-const popupAddNewPlace = document.querySelector('#popup-add-place');
+const formEditProfile = document.forms["popupEditProfileForm"];
 const addNewPlaceButton = document.querySelector('.profile__add-button');
-const formAddNewCard = popupAddNewPlace.querySelector('.popup__form');
+const formAddNewCard = document.forms["popupAddForm"];
 
-///// информация в профиле пользователя
+
+//информация в профиле пользователя
 const userInfo = new UserInfo({
   userNameSelector: '.profile__name',
   userInfoSelector: '.profile__subtitle'
@@ -31,11 +31,15 @@ const editProfilePopup = new PopupWithForm('#popup-edit-profile', {
 });
 
 //экземпляр класса Card
+function getCard(data) {
+  const card = new Card(data, '#element-place-cards', handleCardClick).createCardElement();
+  return card;
+};
+
 const createCard = (data) => {
-  const card = new Card(data, '#element-place-cards', handleCardClick);
-  const cardElement = card.createCardElement(data);
+  const cardElement = getCard(data)
   cardList.addItem(cardElement);
-}
+};
 
 // Создаем экземпляр класса Section и подгружаем массив с  карточками
 const cardList = new Section(

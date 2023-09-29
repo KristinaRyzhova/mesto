@@ -15,12 +15,9 @@ const formEditProfile = popupEditProfile.querySelector('.popup__form');
 
 const popupAddNewPlace = document.querySelector('#popup-add-place');
 const addNewPlaceButton = document.querySelector('.profile__add-button');
-
-const elementsList = document.querySelector('.elements__list');
 const formAddNewCard = popupAddNewPlace.querySelector('.popup__form');
-
-const addNameInput = popupAddNewPlace.querySelector('.popup__input_type_add-place');
-const placeDescriptionInput = popupAddNewPlace.querySelector('.popup__input_type_place-description');
+const nameAddNewCardInput = popupAddNewPlace.querySelector('.popup__input_type_placename');
+const linkAddNewCardInput = popupAddNewPlace.querySelector('.popup__input_type_placelink');
 
 ///// информация в профиле пользователя
 const userInfo = new UserInfo({
@@ -37,42 +34,31 @@ const editProfilePopup = new PopupWithForm('#popup-edit-profile', {
 });
 //////////// выше линии все работает!!!!
 
+//экземпляр класса Card
+const createCard = (data) => {
+  const card = new Card(data, '#element-place-cards', handleCardClick);
+  const cardElement = card.createCardElement(data);
+  cardList.addItem(cardElement);
+}
 
-//Создаем карточку
-function createCard(element) {
-  const card = new Card(element, '#element-place-cards', handleCardClick);
-  const cardElement = card.createCardElement();
-  return cardElement;
-};
-
-//подгружаем массив
+// Создаем экземпляр класса Section и подгружаем массив с  карточками
 const cardList = new Section(
   {
     items: initialCards,
     renderer: (data) => {
-      const cardElement = createCard(data);
-      cardList.addItem(cardElement);
-    },
-  }, 
-  elementsList
+      createCard(data);
+    }
+  }, '.elements__list'
 );
 cardList.renderer();
 
-//создаем экземпляр попапа добавления нового места //////
+//создаем экземпляр попапа добавления нового места
 const popupAddNewCardPlace = new PopupWithForm('#popup-add-place', { 
   callbackSubmitForm: (data) => {
     console.log(data);
-    
+    createCard(data);
   }
-    
-  
-  /* cardList.addItem(createCard(data)); */
-  
 });
-
-
-
-
 
 
 
@@ -97,7 +83,7 @@ const handleEditProfileForm = () => {
   formValidatorEditProfile.resetValidation();
   const infoInput = userInfo.getUserInfo();
   userNameInput.value = infoInput.name;
-  userInfoInput.value = infoInput.info;  
+  userInfoInput.value = infoInput.info;
 };
 
 //открываем форму добавления карточки
@@ -120,33 +106,3 @@ const formValidatorEditProfile = new FormValidator(config, formEditProfile);
 formValidatorEditProfile.enableValidation();
 const formValidatorAddCard = new FormValidator(config, formAddNewCard);
 formValidatorAddCard.enableValidation();
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-//вводим в инпуты новую информацию
-function setNodeEditProfileTextValue() {
-  profileName.textContent = userNameInput.value;
-  profileInfo.textContent = userInfoInput.value;
-};
-
-//Добавляем новое фото
-function handleAddFormSubmit(evt) {
-  evt.preventDefault();
-  const descriptionNewCard = placeDescriptionInput.value;
-  const linkNewCard = addNameInput.value;
-  renderCard({name:descriptionNewCard, link:linkNewCard}, elementsList);
-  close(popupAddNewPlace);
-};
-
-formAddNewCard.addEventListener('submit', handleAddFormSubmit); */

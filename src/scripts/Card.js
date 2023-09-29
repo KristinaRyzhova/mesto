@@ -1,6 +1,5 @@
 export class Card {
   constructor(data, templateSelector, handleCardClick) {
-    this._data = data;
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
@@ -40,6 +39,7 @@ export class Card {
     this._element = null;
   };
 
+  //открытие большого фото
   _handleFullImageOpen() {
     this._handleCardClick(this._name, this._link);
  }

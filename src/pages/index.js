@@ -12,12 +12,9 @@ const popupEditOpen = document.querySelector('.profile__edit-button');
 const userNameInput = popupEditProfile.querySelector('.popup__input_type_name');
 const userInfoInput = popupEditProfile.querySelector('.popup__input_type_info');
 const formEditProfile = popupEditProfile.querySelector('.popup__form');
-
 const popupAddNewPlace = document.querySelector('#popup-add-place');
 const addNewPlaceButton = document.querySelector('.profile__add-button');
 const formAddNewCard = popupAddNewPlace.querySelector('.popup__form');
-const nameAddNewCardInput = popupAddNewPlace.querySelector('.popup__input_type_placename');
-const linkAddNewCardInput = popupAddNewPlace.querySelector('.popup__input_type_placelink');
 
 ///// информация в профиле пользователя
 const userInfo = new UserInfo({
@@ -32,7 +29,6 @@ const editProfilePopup = new PopupWithForm('#popup-edit-profile', {
     userInfo.setUserInfo(data);
   }
 });
-//////////// выше линии все работает!!!!
 
 //экземпляр класса Card
 const createCard = (data) => {
@@ -56,19 +52,13 @@ cardList.renderer();
 const popupAddNewCardPlace = new PopupWithForm('#popup-add-place', { 
   callbackSubmitForm: (data) => {
     console.log(data);
-    createCard(data);
+    const dataCard = {
+      name: data.placename,
+      link: data.placelink,
+    };
+    createCard(dataCard);
   }
 });
-
-
-
-
-
-
-
-
-
-//////////// ниже линии все работает!!!!
 
 //экземпляр класса попапа большого фото
 const popupWithImage = new PopupWithImage('#popup-open-full-image');

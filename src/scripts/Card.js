@@ -20,10 +20,10 @@ export class Card {
     this._element = this._getTemplate();
     this._elementLike = this._element.querySelector('.element__like');
     this._elementDelite = this._element.querySelector('.element__delite');
-    this._elementDescription = this._element.querySelector('.element__description');
+    this._elementName = this._element.querySelector('.element__name');
     this._elementImage = this._element.querySelector('.element__image');
     this._elementImage.alt = this._name;
-    this._elementDescription.textContent = this._name;
+    this._elementName.textContent = this._name;
     this._elementImage.src = this._link;
     this._setEventListeners();
     return this._element;

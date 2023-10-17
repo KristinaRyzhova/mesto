@@ -11,13 +11,13 @@ export class UserInfo {
       about: this._userInfo.textContent
     };
   };
-  
+
   setUserInfo(username, userinfo) {
     this._userName.textContent = username;
     this._userInfo.textContent = userinfo;
   };
-  
+
   setUserAvatar(avatar) {
-    this._userAvatar.scr = avatar;
-  }; 
+    this._userAvatar.src = avatar;
+  };
 };

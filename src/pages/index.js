@@ -104,10 +104,22 @@ const editProfilePopup = new PopupWithForm('#popup-edit-profile', {
   }
 });
 
+//попап изменения аватарки
+const editAvatarPopup = new PopupWithForm('#popup-new-avatar', { 
+  callbackSubmitForm: (info) => {
+    api.editUserAvatar(info)
+    .then((data) => {
+      userInfo.setUserAvatar(data.avatar);
+    })
+    .catch((err) => console.log(err));
+  }
+});
 
-
-
-
+//открываем форму изменения аватарки
+const handleChangeAvatar = () => {
+  editAvatarPopup.open();
+  formValidatorAvatar.resetValidation();
+};
 
 
 
@@ -137,22 +149,7 @@ const handleAddNewCardForm = () => {
 
 
 
-//попап изменения аватарки
-/* const editAvatarPopup = new PopupWithForm('#popup-new-avatar', { 
-  callbackSubmitForm: (data) => {
-    console.log(data);
-    userInfo.setUserAvatar();
 
-    //userAvatarInput.src = data.linkavatar;????????????????????????
-    editAvatarPopup.close()    
-  }
-}); */
-
-//открываем форму изменения аватарки
-/* const handleChangeAvatar = () => {
-  editAvatarPopup.open();
-  formValidatorAvatar.resetValidation();
-}; */
 
 
 
@@ -167,25 +164,26 @@ const handlePopupDeliteOpen = () => {
 
 //кнопки открытия попапов
 popupEditOpen.addEventListener('click', handleEditProfileForm);
+changeAvatarButton.addEventListener('click', handleChangeAvatar);
 //addNewPlaceButton.addEventListener('click', handleAddNewCardForm);
-//changeAvatarButton.addEventListener('click', handleChangeAvatar);
 //elementDelite.addEventListener('click', handlePopupDeliteOpen);
 
 //слушатели
 popupWithImage.setEventListeners();
 editProfilePopup.setEventListeners();
+editAvatarPopup.setEventListeners();
 //popupAddNewCardPlace.setEventListeners();
-//editAvatarPopup.setEventListeners();
 //popupDelitImage.setEventListeners();
 
 //валидация форм
 const formValidatorEditProfile = new FormValidator(config, formEditProfile);
 formValidatorEditProfile.enableValidation();
+const formValidatorAvatar = new FormValidator(config, formAvatar);
+formValidatorAvatar.enableValidation();
+
 /* const formValidatorAddCard = new FormValidator(config, formAddNewCard);
 formValidatorAddCard.enableValidation(); */
-/* const formValidatorAvatar = new FormValidator(config, formAvatar);
-formValidatorAvatar.enableValidation();
- */
+
 
 
 

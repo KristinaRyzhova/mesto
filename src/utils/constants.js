@@ -1,4 +1,4 @@
-const initialCards = [
+export const initialCards = [
   {
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -25,7 +25,7 @@ const initialCards = [
   }
 ];
 
-const config = {
+export const config = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button',
@@ -34,4 +34,10 @@ const config = {
   errorClass: 'popup__error_visible'
 };
 
-export { initialCards, config }
+export const configApi = {
+  urlCohort: 'https://mesto.nomoreparties.co/v1/cohort-77',
+  headers: {
+    "content-type": 'application/json',
+    "authorization": 'd6bcfb7e-77e2-4e80-b2d2-ebeac0ceacf7'
+  }
+};

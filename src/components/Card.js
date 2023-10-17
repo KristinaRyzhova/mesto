@@ -18,7 +18,7 @@ export class Card {
   createCardElement = () => {  //создаем образец карточки
     this._element = this._getTemplate();
     this._elementLike = this._element.querySelector('.element__like');
-    this._elementDelite = this._element.querySelector('.element__delite');
+    //this._elementDelite = this._element.querySelector('#popup-delete-button');
     this._elementName = this._element.querySelector('.element__name');
     this._elementImage = this._element.querySelector('.element__image');
     this._elementImage.alt = this._name;
@@ -34,10 +34,10 @@ export class Card {
   };
   
   //удаление фото из галереи
-  _handleElementDelete = () => {
+  /* _handleElementDelete = () => {
     this._element.remove();
     this._element = null;
-  };
+  }; */
 
   //открытие большого фото
   _handleFullImageOpen() {
@@ -47,7 +47,7 @@ export class Card {
   //слушатели
   _setEventListeners() {
     this._elementLike.addEventListener('click', () => { this._handleElementLike() });
-    this._elementDelite.addEventListener('click', () => { this._handleElementDelete() });
+    //this._elementDelite.addEventListener('click', () => { this._handleElementDelete() });
     this._elementImage.addEventListener("click", () => { this._handleFullImageOpen(); });
   };
 };

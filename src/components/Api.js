@@ -24,11 +24,14 @@ export class Api {
       .then(this._onResponse)
   }
 
-  editUserInfo() {
+  editUserInfo(data) {
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
-      body: JSON.stringify(data)
+      body: JSON.stringify({
+        name: data.username,
+        about: data.userinfo,
+      }),
     })
       .then(this._onResponse)
   }

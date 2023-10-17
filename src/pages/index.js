@@ -33,7 +33,7 @@ fetch('https://mesto.nomoreparties.co/v1/cohort-77/users/me', {
   .then(res => res.json())
   .then((result) => {
     console.log(result);
-  }); 
+  });
 
 //информация в профиле пользователя
 const userInfo = new UserInfo({
@@ -48,7 +48,7 @@ api.getUserApi()
   .then((data) => {
     userId = data._id;
     userInfo.setUserInfo(data.name, data.about);
-    userInfo.setUserAvatar(data.avatar);    
+    userInfo.setUserAvatar(data.avatar);
   })
   .catch((err) => console.log(err));
 
@@ -59,7 +59,7 @@ api.getCardsApi()
       const card = new Card(data, '#element-place-cards', handleCardClick).createCardElement();
       return card;
     };
-    
+
     const createCard = (data) => {
       const cardElement = getCard(data)
       cardList.addItem(cardElement);
@@ -90,29 +90,19 @@ const handleEditProfileForm = () => {
   formValidatorEditProfile.resetValidation();
   const infoInput = userInfo.getUserInfo();
   userNameInput.value = infoInput.name;
-  userInfoInput.value = infoInput.info;
+  userInfoInput.value = infoInput.about;
 };
 
 //создаем экземпляр попапа редактирования профиля
-const editProfilePopup = new PopupWithForm('#popup-edit-profile', { 
-  callbackSubmitForm: () => {
-    api.editUserInfo()
-      .then(() => {
-        userInfo.setUserInfo();/////???????
-      })
-      .catch((err) => console.log(err));
-    
-    
-    
-    
-    
+const editProfilePopup = new PopupWithForm('#popup-edit-profile', {
+  callbackSubmitForm: (info) => {
+    api.editUserInfo(info)
+    .then((data) => {
+      userInfo.setUserInfo(data.name, data.about);
+    })
+    .catch((err) => console.log(err));
   }
 });
-
-
-
-
-
 
 
 

@@ -97,30 +97,24 @@ const handleEditProfileForm = () => {
 //создаем экземпляр попапа редактирования профиля
 const editProfilePopup = new PopupWithForm('#popup-edit-profile', {
   callbackSubmitForm: (info) => {
-    editProfilePopup.renderLoad(true);
+    editProfilePopup.renderLoad('Сохранение...');
     api.editUserInfo(info)
       .then((data) => {
         userInfo.setUserInfo(data.name, data.about);
       })
       .catch((err) => console.log(err))
-      .finally(() => {
-        editProfilePopup.renderLoad(false);
-      });
   }
 });
 
 //попап изменения аватарки
 const editAvatarPopup = new PopupWithForm('#popup-new-avatar', {
   callbackSubmitForm: (info) => {
-    editAvatarPopup.renderLoad(true);
+    editAvatarPopup.renderLoad('Сохранение...');
     api.editUserAvatar(info)
       .then((data) => {
         userInfo.setUserAvatar(data.avatar);
       })
       .catch((err) => console.log(err))
-      .finally(() => {
-        editAvatarPopup.renderLoad(false);
-      });
   }
 });
 
@@ -133,7 +127,7 @@ const handleChangeAvatar = () => {
 //создаем экземпляр попапа добавления нового места
 const popupAddNewCardPlace = new PopupWithForm('#popup-add-place', {
   callbackSubmitForm: (info) => {
-    popupAddNewCardPlace.renderLoad(true);
+    popupAddNewCardPlace.renderLoad('Сохранение...');
     api.addNewCardPlace(info)
       .then((data) => {
         const dataCard = {
@@ -144,9 +138,6 @@ const popupAddNewCardPlace = new PopupWithForm('#popup-add-place', {
         console.log(dataCard);
       })
       .catch((err) => console.log(err))
-      .finally(() => {
-        popupAddNewCardPlace.renderLoad(false);
-      });
   }
 });
 

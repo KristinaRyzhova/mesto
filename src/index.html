@@ -51,7 +51,7 @@
           <input class="popup__input popup__input_type_info" id="userinfo" type="text" name="userinfo"
             placeholder="О себе" minlength="2" maxlength="200" required>
           <span class="popup__error popup__error_visible" id="userinfo-error"></span>
-          <button class="popup__button" type="submit" aria-label="Сохранить и закрыть">Сохранить</button>
+          <button class="popup__button" type="submit" aria-label="Сохранить">Сохранить</button>
         </form>
       </div>
     </div>
@@ -71,36 +71,36 @@
         </form>
       </div>
     </div>
-  </div>
-  <!--попап картинки-->
-  <div class="popup popup_overley-full-image" id="popup-open-full-image">
-    <div class="popup__full-image-container">
-      <img src="#" alt="" class="popup__full-image">
-      <h2 class="popup__full-image-name"></h2>
-      <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
-    </div>
-  </div>
-  <!--попап удаления-->
-  <div class="popup" id="popup-delete">
-    <div class="popup__container">
-      <form class="popup__form" name="popupDeliteCardForm" novalidate></form>
+    <!--попап удаления-->
+    <div class="popup" id="popup-delete">
+      <div class="popup__container popup__container_delite">
         <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
         <h2 class="popup__title">Вы уверены?</h2>
-        <button class="popup__button" id="popup-delete-button" type="submit" aria-label="Да">Да</button>
-      </form>
+        <form class="popup__form popup__form_delite" name="deliteCard" novalidate>
+          <button class="popup__button" type="submit" aria-label="Да">Да</button>
+        </form>
+      </div>
     </div>
-  </div>
-  <!--попап изменения аватарки-->
-  <div class="popup" id="popup-new-avatar">
-    <div class="popup__container">
-      <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
-      <form class="popup__form" id="form-new-avatar" name="newAvatar" novalidate>
+    <!--попап изменения аватарки-->
+    <div class="popup" id="popup-new-avatar">
+      <div class="popup__container popup__container_avatar">
+        <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
         <h2 class="popup__title">Обновить аватар</h2>
-        <input class="popup__input popup__input_type_avatar" id="avatar" type="url" name="avatar"
-          placeholder="Ссылка на аватар" required>
-        <span class="popup__error popup__error_visible" id="avatar-error"></span>
-        <button class="popup__button" type="submit" aria-label="Сохранить">Сохранить</button>
-      </form>
+        <form class="popup__form" name="newAvatar" novalidate>
+          <input class="popup__input popup__input_type_avatar" id="avatar" type="url" name="avatar"
+            placeholder="Ссылка на аватар" required>
+          <span class="popup__error popup__error_visible" id="avatar-error"></span>
+          <button class="popup__button" type="submit" aria-label="Сохранить">Сохранить</button>
+        </form>
+      </div>
+    </div>
+    <!--попап картинки-->
+    <div class="popup popup_overley-full-image" id="popup-open-full-image">
+      <div class="popup__full-image-container">
+        <img src="#" alt="" class="popup__full-image">
+        <h2 class="popup__full-image-name"></h2>
+        <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
+      </div>
     </div>
   </div>
   <!--Секция templates-->

@@ -18,7 +18,6 @@ const addNewPlaceButton = document.querySelector('.profile__add-button');
 const formAddNewCard = document.forms["popupAddForm"];
 const formAvatar = document.forms["newAvatar"];
 const changeAvatarButton = document.querySelector('.profile__new-avatar');
-const popupDeliteCard = document.querySelector('#popup-delete');
 const elementDelite = document.querySelector('.element__delite');
 
 const api = new Api(configApi);
@@ -53,7 +52,7 @@ api.getUserApi()
 
 //экземпляр класса Card
 function getCard(data) {
-  const card = new Card(data, '#element-place-cards', handleCardClick).createCardElement();
+  const card = new Card(data, '#element-place-cards', handleCardClick, handlePopupDeliteOpen).createCardElement();
   return card;
 };
 
@@ -145,24 +144,24 @@ const handleAddNewCardForm = () => {
   formValidatorAddCard.resetValidation();
 };
 
+//попап подтверждения удаления карточки
+const popupDelitImage = new PopupWithConfirmation('#popup-delete');
 
-
-
-
-
-
-
-
-
-
-
-
-
-//попап удаления карточки
-/* const popupDelitImage = new PopupWithConfirmation('#popup-delete');
-const handlePopupDeliteOpen = () => {
+function handlePopupDeliteOpen() {
   popupDelitImage.open();
-}; */
+};
+
+/* //удаление фото из галереи
+  _handleElementDelete = () => {
+    this._element.remove();
+    this._element = null;
+  }; */
+
+
+
+
+
+
 
 
 
@@ -170,14 +169,13 @@ const handlePopupDeliteOpen = () => {
 popupEditOpen.addEventListener('click', handleEditProfileForm);
 changeAvatarButton.addEventListener('click', handleChangeAvatar);
 addNewPlaceButton.addEventListener('click', handleAddNewCardForm);
-//elementDelite.addEventListener('click', handlePopupDeliteOpen);
 
 //слушатели
 popupWithImage.setEventListeners();
 editProfilePopup.setEventListeners();
 editAvatarPopup.setEventListeners();
 popupAddNewCardPlace.setEventListeners();
-//popupDelitImage.setEventListeners();
+popupDelitImage.setEventListeners();
 
 //валидация форм
 const formValidatorEditProfile = new FormValidator(config, formEditProfile);
@@ -186,27 +184,3 @@ const formValidatorAvatar = new FormValidator(config, formAvatar);
 formValidatorAvatar.enableValidation();
 const formValidatorAddCard = new FormValidator(config, formAddNewCard);
 formValidatorAddCard.enableValidation();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* 
- */
-//
-//

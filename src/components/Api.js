@@ -6,7 +6,7 @@ export class Api {
 
   _onResponse(res) {
     return res.ok ? res.json() : res.json().then(err => Promise.reject(err))
-  }
+  };
 
   getUserApi() {
     return fetch(`${this._url}/users/me`, {
@@ -14,7 +14,7 @@ export class Api {
       headers: this._headers
     })
       .then(this._onResponse)
-  }
+  };
 
   getCardsApi() {
     return fetch(`${this._url}/cards`, {
@@ -22,7 +22,7 @@ export class Api {
       headers: this._headers
     })
       .then(this._onResponse)
-  }
+  };
 
   editUserInfo(data) {
     return fetch(`${this._url}/users/me`, {
@@ -34,7 +34,7 @@ export class Api {
       }),
     })
       .then(this._onResponse)
-  }
+  };
 
   editUserAvatar(data) {
     return fetch(`${this._url}/users/me/avatar`, {
@@ -45,7 +45,7 @@ export class Api {
       })
     })
       .then(this._onResponse)
-  }
+  };
 
   addNewCardPlace(data) {
     return fetch(`${this._url}/cards`, {
@@ -57,5 +57,12 @@ export class Api {
       })
     })
       .then(this._onResponse)
-  }
+  };
+
+    
+
+
+
+
+
 };

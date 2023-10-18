@@ -13,7 +13,6 @@ const popupEditProfile = document.querySelector('#popup-edit-profile');
 const popupEditOpen = document.querySelector('.profile__edit-button');
 const userNameInput = popupEditProfile.querySelector('.popup__input_type_name');
 const userInfoInput = popupEditProfile.querySelector('.popup__input_type_info');
-const userAvatarInput = popupEditProfile.querySelector('.popup__input_type_linkavatar');
 const formEditProfile = document.forms["popupEditProfileForm"];
 const addNewPlaceButton = document.querySelector('.profile__add-button');
 const formAddNewCard = document.forms["popupAddForm"];
@@ -52,30 +51,33 @@ api.getUserApi()
   })
   .catch((err) => console.log(err));
 
-// подгружаем карточки с сервера
-api.getCardsApi()
-  .then((dataCards) => {
-    function getCard(data) {
-      const card = new Card(data, '#element-place-cards', handleCardClick).createCardElement();
-      return card;
-    };
+//экземпляр класса Card
+function getCard(data) {
+  const card = new Card(data, '#element-place-cards', handleCardClick).createCardElement();
+  return card;
+};
 
-    const createCard = (data) => {
-      const cardElement = getCard(data)
-      cardList.addItem(cardElement);
-    };
+const createCard = (data) => {
+  const cardElement = getCard(data)
+  cardList.addItem(cardElement);
+};
 
-    const cardList = new Section(
-      {
-        items: dataCards,
-        renderer: (data) => {
-          createCard(data);
-        }
-      }, '.elements__list'
-    );
-    cardList.renderer();
-  })
-  .catch((err) => console.log(err));
+//подгружаем карточки с сервера
+function renderCard() {
+  return api.getCardsApi();
+}
+const dataCards = await renderCard();
+
+//экземпляр класса Section
+const cardList = new Section(
+  {
+    items: dataCards,
+    renderer: (data) => {
+      createCard(data);
+    }
+  }, '.elements__list'
+);
+cardList.renderer();
 
 //экземпляр класса попапа большого фото
 const popupWithImage = new PopupWithImage('#popup-open-full-image');
@@ -121,17 +123,19 @@ const handleChangeAvatar = () => {
   formValidatorAvatar.resetValidation();
 };
 
-
-
 //создаем экземпляр попапа добавления нового места
-/* const popupAddNewCardPlace = new PopupWithForm('#popup-add-place', { 
-  callbackSubmitForm: (data) => {
-    console.log(data);
-    const dataCard = {
-      name: data.placename,
-      link: data.placelink,
-    };
-    createCard(dataCard);
+const popupAddNewCardPlace = new PopupWithForm('#popup-add-place', { 
+  callbackSubmitForm: (info) => {
+    api.addNewCardPlace(info)
+    .then((data) => {
+      const dataCard = {
+        name: data.name,
+        link: data.link,
+      };
+      createCard(dataCard);
+      console.log(dataCard);
+    })
+    .catch((err) => console.log(err));
   }
 });
 
@@ -139,7 +143,7 @@ const handleChangeAvatar = () => {
 const handleAddNewCardForm = () => {
   popupAddNewCardPlace.open();
   formValidatorAddCard.resetValidation();
-}; */
+};
 
 
 
@@ -165,14 +169,14 @@ const handlePopupDeliteOpen = () => {
 //кнопки открытия попапов
 popupEditOpen.addEventListener('click', handleEditProfileForm);
 changeAvatarButton.addEventListener('click', handleChangeAvatar);
-//addNewPlaceButton.addEventListener('click', handleAddNewCardForm);
+addNewPlaceButton.addEventListener('click', handleAddNewCardForm);
 //elementDelite.addEventListener('click', handlePopupDeliteOpen);
 
 //слушатели
 popupWithImage.setEventListeners();
 editProfilePopup.setEventListeners();
 editAvatarPopup.setEventListeners();
-//popupAddNewCardPlace.setEventListeners();
+popupAddNewCardPlace.setEventListeners();
 //popupDelitImage.setEventListeners();
 
 //валидация форм
@@ -180,9 +184,8 @@ const formValidatorEditProfile = new FormValidator(config, formEditProfile);
 formValidatorEditProfile.enableValidation();
 const formValidatorAvatar = new FormValidator(config, formAvatar);
 formValidatorAvatar.enableValidation();
-
-/* const formValidatorAddCard = new FormValidator(config, formAddNewCard);
-formValidatorAddCard.enableValidation(); */
+const formValidatorAddCard = new FormValidator(config, formAddNewCard);
+formValidatorAddCard.enableValidation();
 
 
 

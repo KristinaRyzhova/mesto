@@ -18,7 +18,7 @@ const addNewPlaceButton = document.querySelector('.profile__add-button');
 const formAddNewCard = document.forms["popupAddForm"];
 const formAvatar = document.forms["newAvatar"];
 const changeAvatarButton = document.querySelector('.profile__new-avatar');
-const elementDelite = document.querySelector('.element__delite');
+//const elementDelite = document.querySelector('.element__delite');
 
 const api = new Api(configApi);
 console.log(api);
@@ -97,22 +97,30 @@ const handleEditProfileForm = () => {
 //создаем экземпляр попапа редактирования профиля
 const editProfilePopup = new PopupWithForm('#popup-edit-profile', {
   callbackSubmitForm: (info) => {
+    editProfilePopup.renderLoad(true);
     api.editUserInfo(info)
-    .then((data) => {
-      userInfo.setUserInfo(data.name, data.about);
-    })
-    .catch((err) => console.log(err));
+      .then((data) => {
+        userInfo.setUserInfo(data.name, data.about);
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {
+        editProfilePopup.renderLoad(false);
+      });
   }
 });
 
 //попап изменения аватарки
-const editAvatarPopup = new PopupWithForm('#popup-new-avatar', { 
+const editAvatarPopup = new PopupWithForm('#popup-new-avatar', {
   callbackSubmitForm: (info) => {
+    editAvatarPopup.renderLoad(true);
     api.editUserAvatar(info)
-    .then((data) => {
-      userInfo.setUserAvatar(data.avatar);
-    })
-    .catch((err) => console.log(err));
+      .then((data) => {
+        userInfo.setUserAvatar(data.avatar);
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {
+        editAvatarPopup.renderLoad(false);
+      });
   }
 });
 
@@ -123,18 +131,22 @@ const handleChangeAvatar = () => {
 };
 
 //создаем экземпляр попапа добавления нового места
-const popupAddNewCardPlace = new PopupWithForm('#popup-add-place', { 
+const popupAddNewCardPlace = new PopupWithForm('#popup-add-place', {
   callbackSubmitForm: (info) => {
+    popupAddNewCardPlace.renderLoad(true);
     api.addNewCardPlace(info)
-    .then((data) => {
-      const dataCard = {
-        name: data.name,
-        link: data.link,
-      };
-      createCard(dataCard);
-      console.log(dataCard);
-    })
-    .catch((err) => console.log(err));
+      .then((data) => {
+        const dataCard = {
+          name: data.name,
+          link: data.link,
+        };
+        createCard(dataCard);
+        console.log(dataCard);
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {
+        popupAddNewCardPlace.renderLoad(false);
+      });
   }
 });
 

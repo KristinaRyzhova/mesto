@@ -40,16 +40,6 @@ const userInfo = new UserInfo({
   userAvatarSelector: '.profile__avatar'
 });
 
-let userId = null;
-
-api.getUserApi()
-  .then((data) => {
-    userId = data._id;
-    userInfo.setUserInfo(data.name, data.about);
-    userInfo.setUserAvatar(data.avatar);
-  })
-  .catch((err) => console.log(err));
-
 //экземпляр класса Card
 function getCard(data) {
   const card = new Card(data, '#element-place-cards', handleCardClick, handlePopupDeliteOpen).createCardElement();
@@ -61,22 +51,25 @@ const createCard = (data) => {
   cardList.addItem(cardElement);
 };
 
-//подгружаем карточки с сервера
-function renderCard() {
-  return api.getCardsApi();
-}
-const dataCards = await renderCard();
-
 //экземпляр класса Section
 const cardList = new Section(
   {
-    items: dataCards,
     renderer: (data) => {
       createCard(data);
     }
   }, '.elements__list'
 );
-cardList.renderer();
+
+let userId = null;
+
+Promise.all([api.getUserApi(), api.getCardsApi()])
+  .then(([user, cards]) => {
+    userId = user._id;
+    userInfo.setUserInfo(user.name, user.about);
+    userInfo.setUserAvatar(user.avatar);
+    cardList.renderer(cards);
+  })
+  .catch((err) => console.log(err));
 
 //экземпляр класса попапа большого фото
 const popupWithImage = new PopupWithImage('#popup-open-full-image');
@@ -162,20 +155,6 @@ const popupDelitImage = new PopupWithConfirmation('#popup-delete');
 function handlePopupDeliteOpen() {
   popupDelitImage.open();
 };
-
-/* //удаление фото из галереи
-  _handleElementDelete = () => {
-    this._element.remove();
-    this._element = null;
-  }; */
-
-
-
-
-
-
-
-
 
 //кнопки открытия попапов
 popupEditOpen.addEventListener('click', handleEditProfileForm);

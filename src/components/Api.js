@@ -8,6 +8,10 @@ export class Api {
     return res.ok ? res.json() : res.json().then(err => Promise.reject(err))
   };
 
+  getAllInfo() {
+    return Promise.all([this.getUserApi(), this.getCardsApi()])
+  }
+
   getUserApi() {
     return fetch(`${this._url}/users/me`, {
       method: 'GET',

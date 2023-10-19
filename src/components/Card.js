@@ -51,5 +51,3 @@ export class Card {
     this._elementDelite.addEventListener('click', () => { this._handlePopupDeliteOpen() });
   };
 };
-
-

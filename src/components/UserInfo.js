@@ -11,7 +11,7 @@ export class UserInfo {
       about: this._userInfo.textContent
     };
   };
-
+  
   setUserInfo(username, userinfo) {
     this._userName.textContent = username;
     this._userInfo.textContent = userinfo;
@@ -19,5 +19,5 @@ export class UserInfo {
 
   setUserAvatar(avatar) {
     this._userAvatar.src = avatar;
-  };
+  }; 
 };

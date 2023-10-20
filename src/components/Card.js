@@ -85,8 +85,6 @@ export class Card {
   _setEventListeners() {
     this._elementLike.addEventListener('click', () => { this._handleElementLike(this) });
     this._elementImage.addEventListener("click", () => { this._handleFullImageOpen(); });
-    if (this._userId === this._data.owner._id) {
-      this._elementDelite.addEventListener('click', () => this._handlePopupDeliteOpen(this));
-    };
+    this._elementDelite.addEventListener('click', () => this._handlePopupDeliteOpen(this));
   };
 };

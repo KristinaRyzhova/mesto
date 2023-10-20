@@ -18,7 +18,6 @@ const addNewPlaceButton = document.querySelector('.profile__add-button');
 const formAddNewCard = document.forms["popupAddForm"];
 const formAvatar = document.forms["newAvatar"];
 const changeAvatarButton = document.querySelector('.profile__new-avatar');
-//const elementDelite = document.querySelector('.element__delite');
 
 const api = new Api(configApi);
 console.log(api);
@@ -44,7 +43,7 @@ const userInfo = new UserInfo({
 
 //экземпляр класса Card
 function getCard(data) {
-  const card = new Card(data, '#element-place-cards', handleCardClick, handlePopupDeliteOpen, userId, handleElementLike).createCardElement();
+  const card = new Card(data, '#element-place-cards', handleCardClick, userId, handlePopupDeliteOpen, handleElementLike).createCardElement();
   return card;
 };
 
@@ -65,7 +64,6 @@ const cardList = new Section(
 //подгружаем данные пользователя и карточки с сервера
 Promise.all([api.getUserApi(), api.getCardsApi()])
   .then(([user, cards]) => {
-    console.log(cards[2]);
     userId = user._id;
     userInfo.setUserInfo(user.name, user.about);
     userInfo.setUserAvatar(user.avatar);
@@ -131,12 +129,7 @@ const popupAddNewCardPlace = new PopupWithForm('#popup-add-place', {
     popupAddNewCardPlace.renderLoad(true);
     api.addNewCardPlace(info)
       .then((data) => {
-        const dataCard = {
-          name: data.name,
-          link: data.link,
-        };
-        createCard(dataCard);
-        console.log(dataCard);
+        createCard({ name: data.name, link: data.link }); 
       })
       .catch((err) => console.log(err))
       .finally(() => {
@@ -154,8 +147,14 @@ const handleAddNewCardForm = () => {
 //попап подтверждения удаления карточки
 const popupDelitImage = new PopupWithConfirmation('#popup-delete');
 
-function handlePopupDeliteOpen() {
+function handlePopupDeliteOpen(card) {
   popupDelitImage.open();
+  api.removeCard(card.getId())
+    .then((data) => {
+      cardList.remove(data);
+      popupDelitImage.close();
+    })
+    .catch(err => console.log(err));
 };
 
 //функция изменения состояния лайка

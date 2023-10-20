@@ -71,17 +71,11 @@ export class Api {
       .then(this._onResponse)
   };
 
-
-  /* removeCard(cardId) {
+  removeCard(cardId) {
     return fetch(`${this._url}/cards/${cardId}`, {
       method: 'DELETE',
       headers: this._headers
     })
       .then(this._onResponse)
-  } */
-
-
-
-
-
+  };
 };

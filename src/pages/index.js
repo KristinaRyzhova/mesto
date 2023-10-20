@@ -23,6 +23,8 @@ const changeAvatarButton = document.querySelector('.profile__new-avatar');
 const api = new Api(configApi);
 console.log(api);
 
+let userId = null;
+
 fetch('https://mesto.nomoreparties.co/v1/cohort-77/users/me', {
   headers: {
     authorization: 'd6bcfb7e-77e2-4e80-b2d2-ebeac0ceacf7'
@@ -42,7 +44,7 @@ const userInfo = new UserInfo({
 
 //экземпляр класса Card
 function getCard(data) {
-  const card = new Card(data, '#element-place-cards', handleCardClick, handlePopupDeliteOpen).createCardElement();
+  const card = new Card(data, '#element-place-cards', handleCardClick, handlePopupDeliteOpen, userId, handleElementLike).createCardElement();
   return card;
 };
 
@@ -60,14 +62,14 @@ const cardList = new Section(
   }, '.elements__list'
 );
 
-let userId = null;
-
+//подгружаем данные пользователя и карточки с сервера
 Promise.all([api.getUserApi(), api.getCardsApi()])
   .then(([user, cards]) => {
+    console.log(cards[2]);
     userId = user._id;
     userInfo.setUserInfo(user.name, user.about);
     userInfo.setUserAvatar(user.avatar);
-    cardList.renderer(cards);
+    cardList.renderer(cards.reverse());
   })
   .catch((err) => console.log(err));
 
@@ -154,6 +156,15 @@ const popupDelitImage = new PopupWithConfirmation('#popup-delete');
 
 function handlePopupDeliteOpen() {
   popupDelitImage.open();
+};
+
+//функция изменения состояния лайка
+function handleElementLike(instance) {
+  api.changeLike(instance.getId(), instance.isLiked())
+    .then((res) => {
+      instance.setLikesData(res);
+    })
+    .catch(err => console.log(err));
 };
 
 //кнопки открытия попапов

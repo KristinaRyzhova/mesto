@@ -63,6 +63,15 @@ export class Api {
       .then(this._onResponse)
   };
 
+  changeLike(cardId, isLiked) {
+    return fetch(`${this._url}/cards/${cardId}/likes`, {
+      method: isLiked ? 'DELETE' : 'PUT',
+      headers: this._headers
+    })
+      .then(this._onResponse)
+  };
+
+
   /* removeCard(cardId) {
     return fetch(`${this._url}/cards/${cardId}`, {
       method: 'DELETE',

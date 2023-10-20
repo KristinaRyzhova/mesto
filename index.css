@@ -22,7 +22,7 @@
 .element__like{align-self:center;background-color:transparent;background-image:url(87ed371465c7a6a1cd01.svg);background-position:50%;background-repeat:no-repeat;background-size:22px 19px;border:0;cursor:pointer;height:19px;margin:0;padding:0;transition:opacity .25s ease;width:27px}.element__like:hover{opacity:.6}
 .element__like_active{background-image:url(fe17a515669479b1e649.svg)}
 .element__likes{align-items:center;display:flex;flex-direction:column;gap:5px}
-.element__likes-counter{color:#000;font-size:13px;font-style:normal;font-weight:400;line-height:normal;margin:0;padding:0;text-align:center}
+.element__like-counter{color:#000;font-size:13px;font-style:normal;font-weight:400;line-height:normal;margin:0;padding:0;text-align:center}
 .footer{margin:48px auto 36px;min-width:282px}@media screen and (min-width:880px){.footer{margin-bottom:60px;margin-top:67px;max-width:880px}}
 .footer__copyright{color:#545454;font-family:Inter,Helvetica Neue,Arial,sans-serif;font-size:14px;font-style:normal;font-weight:400;line-height:17px;margin:0 0 0 19px;padding:0}@media screen and (min-width:880px){.footer__copyright{font-size:18px;line-height:22px;margin-left:0}}
 .popup{background-color:rgba(0,0,0,.5);height:100%;left:0;opacity:0;pointer-events:none;position:fixed;top:0;transition:opacity .5s,visibility .5s linear;visibility:hidden;width:100%}

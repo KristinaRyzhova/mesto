@@ -1,5 +1,4 @@
 import '../pages/index.css';
-import { config, configApi } from '../utils/constants.js';
 import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
 import { Section } from '../components/Section.js';
@@ -8,31 +7,22 @@ import { PopupWithForm } from '../components/PopupWithForm.js';
 import { PopupWithConfirmation } from '../components/PopupWithConfirmation.js';
 import { UserInfo } from '../components/UserInfo.js';
 import { Api } from '../components/Api.js';
-
-const popupEditProfile = document.querySelector('#popup-edit-profile');
-const popupEditOpen = document.querySelector('.profile__edit-button');
-const userNameInput = popupEditProfile.querySelector('.popup__input_type_name');
-const userInfoInput = popupEditProfile.querySelector('.popup__input_type_info');
-const formEditProfile = document.forms["popupEditProfileForm"];
-const addNewPlaceButton = document.querySelector('.profile__add-button');
-const formAddNewCard = document.forms["popupAddForm"];
-const formAvatar = document.forms["newAvatar"];
-const changeAvatarButton = document.querySelector('.profile__new-avatar');
+import {
+  popupEditOpen,
+  userNameInput,
+  userInfoInput,
+  formEditProfile,
+  addNewPlaceButton,
+  formAddNewCard,
+  formAvatar,
+  changeAvatarButton,
+  config,
+  configApi
+} from "../utils/constants";
 
 const api = new Api(configApi);
-console.log(api);
 
 let userId = null;
-
-fetch('https://mesto.nomoreparties.co/v1/cohort-77/users/me', {
-  headers: {
-    authorization: 'd6bcfb7e-77e2-4e80-b2d2-ebeac0ceacf7'
-  }
-})
-  .then(res => res.json())
-  .then((result) => {
-    console.log(result);
-  });
 
 //информация в профиле пользователя
 const userInfo = new UserInfo({
@@ -145,16 +135,18 @@ const handleAddNewCardForm = () => {
 };
 
 //попап подтверждения удаления карточки
-const popupDelitImage = new PopupWithConfirmation('#popup-delete');
+const popupDelitImage = new PopupWithConfirmation('#popup-delete', null);
 
 function handlePopupDeliteOpen(card) {
   popupDelitImage.open();
-  api.removeCard(card.getId())
-    .then((data) => {
-      cardList.remove(data);
-      popupDelitImage.close();
-    })
-    .catch(err => console.log(err));
+  popupDelitImage.setDeleteSubmit(() => {
+    api.removeCard(card.getId())
+      .then(() => {
+        card.deleteCard();
+        popupDelitImage.close();
+      })
+      .catch(err => console.log(err));
+  });
 };
 
 //функция изменения состояния лайка

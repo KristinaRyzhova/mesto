@@ -25,6 +25,15 @@ export const initialCards = [
   }
 ];
 
+export const popupEditOpen = document.querySelector('.profile__edit-button');
+export const userNameInput = document.querySelector('.popup__input_type_name');
+export const userInfoInput = document.querySelector('.popup__input_type_info');
+export const formEditProfile = document.forms["popupEditProfileForm"];
+export const addNewPlaceButton = document.querySelector('.profile__add-button');
+export const formAddNewCard = document.forms["popupAddForm"];
+export const formAvatar = document.forms["newAvatar"];
+export const changeAvatarButton = document.querySelector('.profile__new-avatar');
+
 export const config = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',

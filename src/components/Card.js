@@ -4,6 +4,8 @@ export class Card {
     this._name = data.name;
     this._link = data.link;
     this._userId = userId;
+    this._likes = data.likes;
+    this._id = data.id;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
     this._handlePopupDeliteOpen = handlePopupDeliteOpen;
@@ -76,7 +78,7 @@ export class Card {
     }
   };
 
-  remove() {
+  deleteCard() {
     this._element.remove();
     this._element = null;
   };

@@ -4,8 +4,8 @@ export class Card {
     this._name = data.name;
     this._link = data.link;
     this._userId = userId;
-    this._likes = data.likes;
-    this._id = data.id;
+    /* this._likes = data.likes;
+    this._id = data.id; */
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
     this._handlePopupDeliteOpen = handlePopupDeliteOpen;
@@ -45,7 +45,6 @@ export class Card {
 
   _updateLike() {
     this._elementLikeCounter.textContent = this._data.likes.length;
-    
     if (this.isLiked()) {
       this._elementLike.classList.add('element__like_active')
     } else {

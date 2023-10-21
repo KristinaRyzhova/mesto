@@ -119,7 +119,7 @@ const popupAddNewCardPlace = new PopupWithForm('#popup-add-place', {
     popupAddNewCardPlace.renderLoad(true);
     api.addNewCardPlace(info)
       .then((data) => {
-        createCard({ name: data.name, link: data.link }); 
+        createCard(data); 
       })
       .catch((err) => console.log(err))
       .finally(() => {

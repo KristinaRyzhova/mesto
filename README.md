@@ -46,11 +46,6 @@ __________________________________________________________________
    - были добавлен класс PopupWithConfirmation с подтверждением удаления картинки;
    - был лучшен UX всех форм;
 
-**GitHub**
-
-   - [Ссылка на проект в GitHub](https://github.com/KristinaRyzhova/mesto)
-
-
 **WWW**
 
    - [Сайт проекта](https://kristinaryzhova.github.io/mesto/)

@@ -84,6 +84,7 @@ const editProfilePopup = new PopupWithForm('#popup-edit-profile', {
     api.editUserInfo(info)
       .then((data) => {
         userInfo.setUserInfo(data.name, data.about);
+        editProfilePopup.close();
       })
       .catch((err) => console.log(err))
       .finally(() => {
@@ -99,6 +100,7 @@ const editAvatarPopup = new PopupWithForm('#popup-new-avatar', {
     api.editUserAvatar(info)
       .then((data) => {
         userInfo.setUserAvatar(data.avatar);
+        editAvatarPopup.close();
       })
       .catch((err) => console.log(err))
       .finally(() => {
@@ -119,7 +121,8 @@ const popupAddNewCardPlace = new PopupWithForm('#popup-add-place', {
     popupAddNewCardPlace.renderLoad(true);
     api.addNewCardPlace(info)
       .then((data) => {
-        createCard(data); 
+        createCard(data);
+        popupAddNewCardPlace.close();
       })
       .catch((err) => console.log(err))
       .finally(() => {

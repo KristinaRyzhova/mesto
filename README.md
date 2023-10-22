@@ -9,14 +9,16 @@ __________________________________________________________________
 
 **Применяемые технологии:**
 
-   - HTML5;
-   - CSS3;
-   - JavaScript;
-   - Flexbox;
-   - Grid Layout;
-   - Media Queries;
-   - Методология БЭМ: Nested;
-   - Webpack.
+   - [x] HTML5;
+   - [x] CSS3;
+   - [x] JavaScript;
+   - [x] Flexbox;
+   - [x] Grid Layout;
+   - [x] Media Queries;
+   - [x] Методология БЭМ: Nested;
+   - [x] Webpack;
+   - [x] GitHubPages;
+   - [x] API.
 
 **Адаптивная верстка**
 
@@ -48,7 +50,7 @@ __________________________________________________________________
 
 **WWW**
 
-   - [Сайт проекта](https://kristinaryzhova.github.io/mesto/)
+   - <https://kristinaryzhova.github.io/mesto/>
 ________________________________________________________________
 
 ## Автор:
